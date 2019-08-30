@@ -40,7 +40,7 @@ public class probabilityTest {
 		if (numSix == 0) {
 			//무한반복으로 6이 나올 때 까지 실행
 			do {
-				int random = (int)(Math.random()*200-100);
+				int random = (int)(Math.random()*201-100);
 				count++;
 				if (random == 6) {
 					numSix++;
@@ -54,7 +54,7 @@ public class probabilityTest {
 		if (count == num)	probability = (double)numSix/num;
 		else 				probability = (double)numSix/count;
 
-		System.out.printf("%d번 시도, 6이 나온 횟수: %d%n", count == num ? num : count, numSix);
+		System.out.printf("%d번 시도, 6이 나온 횟수: %d%n", count, numSix);
 		System.out.printf("확률은 %.4f", probability);
 	}
 }
