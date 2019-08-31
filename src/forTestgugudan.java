@@ -20,7 +20,7 @@ public class forTestgugudan {
 			for (int i = 0; i < 9; i++) {
 				//컬럼 전부 출력했는지 안했는지 구분하고 단을 나타내는 조건
 				if (count == 0) dan = 2;
-				else			dan = (calumm * count) + 2;
+				else			dan = (calumm * count) + 2; //줄 바꿈의 핵심 
 				//구구단을 컬럼대로 출력
 				for (int j = 0; j < calumm; j++) {
 					System.out.printf("%d * %d = %d \t", dan, i+1, dan*(i+1));
