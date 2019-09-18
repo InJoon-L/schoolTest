@@ -6,7 +6,7 @@ public class OperQuiz_2 {
 	public static void main(String[] args) {
 		Scanner scn = new Scanner(System.in);
 		
-		int count			= 0;	//몇 번째인지 횟수를 센다
+		int count		= 0;	//몇 번째인지 횟수를 센다
 		int inputNum		= 0;	
 		String inputQ		= "";
 
