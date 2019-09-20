@@ -14,7 +14,7 @@ public class OperTest_1 {
 		for (int i = 0; i < inputNum.length(); i++) {
 			int temp = (inputNum.charAt(i) - '0');
 			result += temp;
-			System.out.print(inputNum.charAt(i)- '0');
+			System.out.print(temp);
 			if (inputNum.length() - 1 != i) {
 				System.out.print("+");
 			}
