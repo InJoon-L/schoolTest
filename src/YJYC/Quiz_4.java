@@ -6,9 +6,9 @@ public class Quiz_4 {
 	public static void main(String[] args) {
 		RevPyramid 	reverse = new RevPyramid();
 		Scanner 	scn 	= new Scanner(System.in);
-		//¿ªÇÇ¶ó¹Ìµå A -> 1 -> a¼ø¼­·Î Ãâ·Â
-		//³ôÀÌ´Â ÀÔ·Â ¹Ş°í 2n-1·Î ÇÇ¶ó¹Ìµå ¸¸µé±â  
-		System.out.print("¿ª ÇÇ¶ó¹ÌµåÀÇ ³ôÀÌ¸¦ ÀÔ·ÂÇÏ¼¼¿ä:");
+		//ì—­í”¼ë¼ë¯¸ë“œ A -> 1 -> aìˆœì„œë¡œ ì¶œë ¥
+		//ë†’ì´ëŠ” ì…ë ¥ ë°›ê³  2n-1ë¡œ í”¼ë¼ë¯¸ë“œ ë§Œë“¤ê¸°  
+		System.out.print("ì—­ í”¼ë¼ë¯¸ë“œì˜ ë†’ì´ë¥¼ ì…ë ¥í•˜ì„¸ìš”:");
 		int pyramidLine = scn.nextInt();
 		System.out.println("\n--------------------------------------------------------"
 							);
@@ -16,10 +16,10 @@ public class Quiz_4 {
 		scn.close();
 	}
 }
-//ÇÇ¶ó¹Ìµå ¶óÀÎ¿¡ ¸Â°Ô Ãâ·Â 
+//í”¼ë¼ë¯¸ë“œ ë¼ì¸ì— ë§ê²Œ ì¶œë ¥ 
 class RevPyramid {
 	void pyramid(int line) {
-		//ÁÙ ¹Ù²Ş¿¡ µû¶ó Ãâ·ÂÇÏ´Â ¹®±¸ º¯È­ ÁÖ´Â º¯¼ö
+		//ì¤„ ë°”ê¿ˆì— ë”°ë¼ ì¶œë ¥í•˜ëŠ” ë¬¸êµ¬ ë³€í™” ì£¼ëŠ” ë³€ìˆ˜
 		int count 		= 1;
 		for (int i = 0; i < line; i++) {
 			char big = 'A';
@@ -34,6 +34,9 @@ class RevPyramid {
 				if (count % 3 == 1) {
 					System.out.print(big);
 					big++;
+					if (big > 'Z') {
+						big = 'A';
+					}
 				}else if (count % 3 == 2) {
 					System.out.print(num);
 					num++;
@@ -43,6 +46,9 @@ class RevPyramid {
 				}else {
 					System.out.print(min);
 					min++;
+					if (min > 'z') {
+						min = 'a';
+					}
 				}
 			}
 			
