@@ -1,123 +1,122 @@
-package JH_Package;
 import java.util.Scanner;
 
 public class Quiz_7 {  
 	public static void main(String[] args) {
-		//¹®ÀÚ¿­ ¹è¿­ÀÇ Å©±â
+		//ë¬¸ìì—´ ë°°ì—´ì˜ í¬ê¸°
 		final int    MAX_SIZE = 30;
 
-		//Å°º¸µå·ÎºÎÅÍ ÀÔ·Â ¹ŞÀº ¹®ÀÚ¿­ ÀúÀå
+		//í‚¤ë³´ë“œë¡œë¶€í„° ì…ë ¥ ë°›ì€ ë¬¸ìì—´ ì €ì¥
 		String      inputValues 	= null;
-		//Ã£´Â ¹®ÀÚ¿­ÀÌ ¸î°³ ÀÖ´ÂÁö ÀúÀå
+		//ì°¾ëŠ” ë¬¸ìì—´ì´ ëª‡ê°œ ìˆëŠ”ì§€ ì €ì¥
 		int         count       = 0;
-		//Ã£´Â ¹®ÀÚ¿­ÀÌ ÀÖ´ÂÁö ¾ø´ÂÁö ÆÇº°ÇÏ±â À§ÇÑ º¯¼ö
+		//ì°¾ëŠ” ë¬¸ìì—´ì´ ìˆëŠ”ì§€ ì—†ëŠ”ì§€ íŒë³„í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
 		boolean      flag      = false;
 
-		//Å°º¸µå·ÎºÎÅÍ ÀÔ·Â ¹ŞÀº ¹®ÀÚ¿­À» CharÇü ¹è¿­·Î ÀúÀå
-		//Ã£¾Æ/¹Ù²Ù±â ±â´É ±¸Çö½Ã »ç¿ë
+		//í‚¤ë³´ë“œë¡œë¶€í„° ì…ë ¥ ë°›ì€ ë¬¸ìì—´ì„ Charí˜• ë°°ì—´ë¡œ ì €ì¥
+		//ì°¾ì•„/ë°”ê¾¸ê¸° ê¸°ëŠ¥ êµ¬í˜„ì‹œ ì‚¬ìš©
 		char charArray[] = new char[MAX_SIZE];
 
-		//Å°º¸µå·ÎºÎÅÍ ¹®ÀÚ¿­À» ÀÔ·Â ¹Ş¾Æ String Çü ÀúÀå
+		//í‚¤ë³´ë“œë¡œë¶€í„° ë¬¸ìì—´ì„ ì…ë ¥ ë°›ì•„ String í˜• ì €ì¥
 		Scanner scn = new Scanner(System.in);
-		System.out.println("30ÀÚ ÀÌ³» ¹®ÀÚ¿­À» ÀÔ·ÂÇÏ½Ã¿À.");
+		System.out.println("30ì ì´ë‚´ ë¬¸ìì—´ì„ ì…ë ¥í•˜ì‹œì˜¤.");
 		inputValues = scn.nextLine();
 
-		//ÀÔ·Â¹ŞÀº ¹®ÀÚ¿­ÀÌ 30ÀÚ ÀÌ³»ÀÎÁö È®ÀÎ
+		//ì…ë ¥ë°›ì€ ë¬¸ìì—´ì´ 30ì ì´ë‚´ì¸ì§€ í™•ì¸
 		while (inputValues.length() > 30) {
-			System.out.println("30ÀÚ ÀÌ³» ¹®ÀÚ¿­À» ÀÔ·ÂÇÏ½Ã¿À.");
+			System.out.println("30ì ì´ë‚´ ë¬¸ìì—´ì„ ì…ë ¥í•˜ì‹œì˜¤.");
 			inputValues = scn.nextLine();
 		}
 
-		//ÀúÀåµÈ ¹®ÀÚ¿­À» CharÇü array º¯¼ö charArray¿¡ º¹»ç
+		//ì €ì¥ëœ ë¬¸ìì—´ì„ Charí˜• array ë³€ìˆ˜ charArrayì— ë³µì‚¬
 		inputValues.getChars(0, inputValues.length(), charArray, 0);
 
-		//º¹»çµÈ ¹®ÀÚ°ª Ãâ·Â
-		System.out.print("ÀÔ·Â ¹®Àå : ");
+		//ë³µì‚¬ëœ ë¬¸ìê°’ ì¶œë ¥
+		System.out.print("ì…ë ¥ ë¬¸ì¥ : ");
 		for (int i = 0; i < charArray.length; i++) {
 			System.out.print(charArray[i]);
 		}
 
-		System.out.print("\nÃ£À» ¹®ÀÚ¿­ : ");
+		System.out.print("\nì°¾ì„ ë¬¸ìì—´ : ");
 		inputValues = scn.nextLine();
 
-		//ºñ±³ÇÏ±â À§ÇÑ ¹®ÀÚ ¹è¿­
+		//ë¹„êµí•˜ê¸° ìœ„í•œ ë¬¸ì ë°°ì—´
 		char searchArray[] = new char[inputValues.length()];
 		inputValues.getChars(0, inputValues.length(), searchArray, 0);
 
 		int[] sameNums  = new int[MAX_SIZE];
 
-		//Ã£´Â ¹®ÀÚ¿­ÀÌ ÀÖ´ÂÁö ¾ø´ÂÁö È®ÀÎ
+		//ì°¾ëŠ” ë¬¸ìì—´ì´ ìˆëŠ”ì§€ ì—†ëŠ”ì§€ í™•ì¸
 		for (int i = 0; i < charArray.length - searchArray.length; i++) {
-			//Ã£´Â ¹®ÀÚ¿­ Å©±â¸¸Å­ Àß¶ó¼­ ÀúÀå
+			//ì°¾ëŠ” ë¬¸ìì—´ í¬ê¸°ë§Œí¼ ì˜ë¼ì„œ ì €ì¥
 			String inputString   	= null;
 			String searchString 	= null;
 			int tmp					= 0;
 
 			for (int j = 0; j < searchArray.length; j++) {
-				//charÇüÀ» stringÇüÀ¸·Î º¯È¯
+				//charí˜•ì„ stringí˜•ìœ¼ë¡œ ë³€í™˜
 				searchString  	 += Character.toString(searchArray[j]);
 				inputString      += Character.toString(charArray[i + j]);
-				//¿ø·¡ ÀÔ·Â¹®ÀåÀÇ ¸î¹øÂ° ÀÚ¸®±îÁö ÀÖ´ÂÁö ÀúÀå
+				//ì›ë˜ ì…ë ¥ë¬¸ì¥ì˜ ëª‡ë²ˆì§¸ ìë¦¬ê¹Œì§€ ìˆëŠ”ì§€ ì €ì¥
 				tmp         	 = i + j;
 			}
-			//ºñ±³ÇØ¼­ °°À¸¸é ¹Ù²Ü ¹®ÀÚ¿­À» À§ÇÑ º¯¼öµé ÀúÀå 
+			//ë¹„êµí•´ì„œ ê°™ìœ¼ë©´ ë°”ê¿€ ë¬¸ìì—´ì„ ìœ„í•œ ë³€ìˆ˜ë“¤ ì €ì¥ 
 			if (searchString.equals(inputString)) {
-				//¹Ù²Ü ¹®ÀÚ¿­ ¹İº¹¹® ½ÇÇà
+				//ë°”ê¿€ ë¬¸ìì—´ ë°˜ë³µë¬¸ ì‹¤í–‰
 				flag			= 	true;
-				//Áßº¹µÈ ¼ö¸¸Å­ ¹è¿­¿¡ Ã£Àº ¹®ÀÚ¿­ ±æÀÌ¸¦ ÀúÀå
+				//ì¤‘ë³µëœ ìˆ˜ë§Œí¼ ë°°ì—´ì— ì°¾ì€ ë¬¸ìì—´ ê¸¸ì´ë¥¼ ì €ì¥
 				sameNums[count]	= 	tmp;
-				//Áßº¹µÈ ¼ö
+				//ì¤‘ë³µëœ ìˆ˜
 				count++;
 			}
 		}
-		//Ã£´Â ¹®ÀÚ¿­ÀÌ ÀÖÀ» ½Ã ½ÇÇà
+		//ì°¾ëŠ” ë¬¸ìì—´ì´ ìˆì„ ì‹œ ì‹¤í–‰
 		while(flag) {
-			//¹Ù²Ü ¹®ÀÚ¿­À» ÀÔ·Â
-			System.out.print("¹Ù²Ü ¹®ÀÚ¿­ : ");
+			//ë°”ê¿€ ë¬¸ìì—´ì„ ì…ë ¥
+			System.out.print("ë°”ê¿€ ë¬¸ìì—´ : ");
 
 			inputValues = scn.nextLine();
 			char changeArray[] = new char[inputValues.length()];
 			inputValues.getChars(0, inputValues.length(), changeArray, 0);
 
-			System.out.print("°á°ú : ");
-			//same ¹è¿­À» ºÒ·¯¿À±â À§ÇÑ ÀÓ½Ã º¯¼ö
+			System.out.print("ê²°ê³¼ : ");
+			//same ë°°ì—´ì„ ë¶ˆëŸ¬ì˜¤ê¸° ìœ„í•œ ì„ì‹œ ë³€ìˆ˜
 			int tmp = 0;	
-			//°á°ú ¹®ÀÚ¿­À» Ãâ·ÂÇÑ´Ù.
+			//ê²°ê³¼ ë¬¸ìì—´ì„ ì¶œë ¥í•œë‹¤.
 			for (int i = 0; i < charArray.length; i++) {
-				//Ã£´Â ¹®ÀÚ¿­ ±æÀÌ°¡ 1 ÀÏ¶§ ¿ø·¡ ¹®Àå Ãâ·ÂÀ» Á¦ÇÑ ÇÏ±â À§ÇÑ º¯¼ö
+				//ì°¾ëŠ” ë¬¸ìì—´ ê¸¸ì´ê°€ 1 ì¼ë•Œ ì›ë˜ ë¬¸ì¥ ì¶œë ¥ì„ ì œí•œ í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
 				int condition = 0;
-				//Á¶°ÇÀ» ¸¸Á·ÇÏ¸é ¹Ù²Ü ¹®ÀÚ¿­À» Ãâ·ÂÇÏ°í ¾Æ´Ï¸é ¿ø·¡ ¹®ÀÚ¿­À» Ãâ·ÂÇÑ´Ù. Ã£´Â ¹®ÀÚ¿­ ±æÀÌ°¡ 1 ÀÏ ¶§
+				//ì¡°ê±´ì„ ë§Œì¡±í•˜ë©´ ë°”ê¿€ ë¬¸ìì—´ì„ ì¶œë ¥í•˜ê³  ì•„ë‹ˆë©´ ì›ë˜ ë¬¸ìì—´ì„ ì¶œë ¥í•œë‹¤. ì°¾ëŠ” ë¬¸ìì—´ ê¸¸ì´ê°€ 1 ì¼ ë•Œ
 				if (searchArray.length == 1 && i > sameNums[tmp] - searchArray.length && i <= sameNums[tmp]) {
 					for (int j = 0; j < changeArray.length; j++) {
 						System.out.print(changeArray[j]);
 					}
-					//Áßº¹µÈ °ÍÀÌ ÀÖÀ» °æ¿ì ½ÇÇà½ÃÅ°±â À§ÇÔ
+					//ì¤‘ë³µëœ ê²ƒì´ ìˆì„ ê²½ìš° ì‹¤í–‰ì‹œí‚¤ê¸° ìœ„í•¨
 					tmp++;
-					//¿ø·¡ ¹®ÀåÀ» Ãâ·ÂÇÏÁö ¾Ê±â À§ÇØ Áõ°¡ 
+					//ì›ë˜ ë¬¸ì¥ì„ ì¶œë ¥í•˜ì§€ ì•Šê¸° ìœ„í•´ ì¦ê°€ 
 					condition++;
-					//Á¶°ÇÀ» ¸¸Á·ÇÏ¸é ¹Ù²Ü ¹®ÀÚ¿­À» Ãâ·ÂÇÏ°í ¾Æ´Ï¸é ¿ø·¡ ¹®ÀÚ¿­À» Ãâ·ÂÇÑ´Ù. Ã£´Â ¹®ÀÚ¿­ ±æÀÌ°¡ 1 º¸´Ù Å¬ ¶§ 
+					//ì¡°ê±´ì„ ë§Œì¡±í•˜ë©´ ë°”ê¿€ ë¬¸ìì—´ì„ ì¶œë ¥í•˜ê³  ì•„ë‹ˆë©´ ì›ë˜ ë¬¸ìì—´ì„ ì¶œë ¥í•œë‹¤. ì°¾ëŠ” ë¬¸ìì—´ ê¸¸ì´ê°€ 1 ë³´ë‹¤ í´ ë•Œ 
 				} else if (i > sameNums[tmp] - searchArray.length && i <= sameNums[tmp]) {
 					for (int j = 0; j < changeArray.length; j++) {
 						System.out.print(changeArray[j]);
 					}
-					//Áßº¹µÈ °ÍÀÌ ÀÖÀ» °æ¿ì ½ÇÇà½ÃÅ°±â À§ÇÔ
+					//ì¤‘ë³µëœ ê²ƒì´ ìˆì„ ê²½ìš° ì‹¤í–‰ì‹œí‚¤ê¸° ìœ„í•¨
 					tmp++;
-					//¹Ù²î°í ³­ ÈÄ ´ÙÀ½ ¹®ÀåÀ» ½ÇÇàÇÏ±âÀ§ÇØ Ã£Àº ¹®ÀÚ¿­ ¸¸Å­ ³Ñ±â±â À§ÇÔ
+					//ë°”ë€Œê³  ë‚œ í›„ ë‹¤ìŒ ë¬¸ì¥ì„ ì‹¤í–‰í•˜ê¸°ìœ„í•´ ì°¾ì€ ë¬¸ìì—´ ë§Œí¼ ë„˜ê¸°ê¸° ìœ„í•¨
 					i = i + searchArray.length;
 				}
-				//Ã£´Â ¹®ÀÚ¿­ ±æÀÌ°¡ 1 ÀÏ ¶§ Ãâ·ÂÇÏÁö ¾Ê±â À§ÇÑ Á¶°Ç
+				//ì°¾ëŠ” ë¬¸ìì—´ ê¸¸ì´ê°€ 1 ì¼ ë•Œ ì¶œë ¥í•˜ì§€ ì•Šê¸° ìœ„í•œ ì¡°ê±´
 				if (condition == 0) {
 					System.out.print(charArray[i]);
 				}
 			}
 			break;
 		}
-		//Ã£´Â ¹®ÀÚ¿­ÀÌ ¾øÀ» ¶§ ½ÇÇà
+		//ì°¾ëŠ” ë¬¸ìì—´ì´ ì—†ì„ ë•Œ ì‹¤í–‰
 		if (!flag) {
-			System.out.println("°á°ú:Ã£´Â ¹®ÀÚ¿­ÀÌ ¾ø½À´Ï´Ù.");
+			System.out.println("ê²°ê³¼:ì°¾ëŠ” ë¬¸ìì—´ì´ ì—†ìŠµë‹ˆë‹¤.");
 		}
 		
-		System.out.println("\nÇÁ·Î±×·¥ Á¾·á");
+		System.out.println("\ní”„ë¡œê·¸ë¨ ì¢…ë£Œ");
 
 		scn.close();
 	}
