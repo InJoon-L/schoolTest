@@ -6,41 +6,41 @@ public class Quiz_17 {
 	public static void main(String[] args) {
 		Scanner scn = new Scanner(System.in);
 
-		System.out.println("Çà·Ä NÀÇ Å©±â¸¦ ÀÔ·ÂÇÏ¼¼¿ä:");
-		int 	arraySize	= scn.nextInt();
-		int 	number		= 0;
-		int 	row			= 0;
-		int 	col			= 0;
-		int		count		= 0;	// ÃÊ¹İ ´ŞÆØÀÌÇà·Ä¿¡ ²©´Â Á¶°ÇÀ» ÁÖ±âÀ§ÇÑ º¯¼ö
-		int		start		= 0;	// ´ŞÆØÀÌÇà·ÄÀÇ ½ÃÀÛÁ¡À» Á¤ÇÏ´Â º¯¼ö
-		boolean flag		= false;
+		System.out.println("í–‰ë ¬ Nì˜ í¬ê¸°ë¥¼ ì…ë ¥í•˜ì„¸ìš”:");
+		int 		arraySize	= scn.nextInt();
+		int 		number		= 0;
+		int 		row		= 0;
+		int 		col		= 0;
+		int		count		= 0;	// ì´ˆë°˜ ë‹¬íŒ½ì´í–‰ë ¬ì— êº½ëŠ” ì¡°ê±´ì„ ì£¼ê¸°ìœ„í•œ ë³€ìˆ˜
+		int		start		= 0;	// ë‹¬íŒ½ì´í–‰ë ¬ì˜ ì‹œì‘ì ì„ ì •í•˜ëŠ” ë³€ìˆ˜
+		boolean 	flag		= false;
 
 		while(arraySize > 10 || arraySize < 2) {
-			System.out.println("2ÀÌ»ó 10ÀÌÇÏÀÇ °ªÀ» ÀÔ·ÂÇÏ¼¼¿ä:");
+			System.out.println("2ì´ìƒ 10ì´í•˜ì˜ ê°’ì„ ì…ë ¥í•˜ì„¸ìš”:");
 			arraySize = scn.nextInt();
 		}
 
 		int[][] snailMatrix = new int[arraySize][arraySize];
 		int		cycle		= arraySize * 2 - 1;
-		if (arraySize == 2) cycle++;	//»çÀÌÁî°¡ 2ÀÏ ¶§ ÄÚµå»ó »çÀÌÅ¬ÀÌ ºÎÁ·ÇÏ±â ¶§¹®¿¡ 1À» ´õÇØÁØ´Ù.
+		if (arraySize == 2) cycle++;	//ì‚¬ì´ì¦ˆê°€ 2ì¼ ë•Œ ì½”ë“œìƒ ì‚¬ì´í´ì´ ë¶€ì¡±í•˜ê¸° ë•Œë¬¸ì— 1ì„ ë”í•´ì¤€ë‹¤.
 		
 		System.out.println("====================");
-		System.out.println("´ŞÆØÀÌ Çà·ÄÀÇ »ı¼º ¹æÇâÀº(1: ½Ã°è, 2: ¹İ½Ã°è):");
+		System.out.println("ë‹¬íŒ½ì´ í–‰ë ¬ì˜ ìƒì„± ë°©í–¥ì€(1: ì‹œê³„, 2: ë°˜ì‹œê³„):");
 		int direction = scn.nextInt();
-		//¹æÇâÁöÁ¤
+		//ë°©í–¥ì§€ì •
 		switch (direction) {
-		//½Ã°è
+		//ì‹œê³„
 		case 1:
 			start = 1;
 			break;
-		//¹İ½Ã°è
+		//ë°˜ì‹œê³„
 		case 2: 
 			start = 22;
 			break;
 		}
 		System.out.println("------------------------------------");
 
-		//¼±ÅÃÇÑ ¹æÇâ´ë·Î ´ŞÆØÀÌÇà·Ä¿¡ °ª ÁöÁ¤ 
+		//ì„ íƒí•œ ë°©í–¥ëŒ€ë¡œ ë‹¬íŒ½ì´í–‰ë ¬ì— ê°’ ì§€ì • 
 		for (int i = 0; i < cycle; i++) {
 			for (int j = 0; j < snailMatrix.length; j++) {
 				if (j != arraySize - 1 && !flag) number++;
@@ -103,7 +103,7 @@ public class Quiz_17 {
 
 			if (i > 2) count++;
 		}
-		//´ŞÆØÀÌÇà·Ä Ãâ·Â
+		//ë‹¬íŒ½ì´í–‰ë ¬ ì¶œë ¥
 		for (int i = 0; i < snailMatrix.length; i++) {
 			for (int j = 0; j < snailMatrix.length; j++) {
 				System.out.printf("%d\t", snailMatrix[i][j]);
