@@ -2,29 +2,29 @@ package inJo;
 
 import java.util.Arrays;
 import java.util.Scanner;
-//¶ç¾î¾²±â ¾ø´Â ¹öÁ¯
+
 public class Quiz_19 {
 	public static void main(String[] args) {
 		Scanner scn = new Scanner(System.in);
 
-		System.out.println("³²ÇĞ»ı ¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		System.out.println("ë‚¨í•™ìƒ ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 		int		inputValue	= scn.nextInt();
 		int		caseCount	= 1;
-		//°æ¿ìÀÇ ¼ö °è»ê
+		//ê²½ìš°ì˜ ìˆ˜ ê³„ì‚°
 		for (int i = inputValue; i > 0; i--) {
 			caseCount *= i;
 		}
 		int[]	resultMans	= new int[caseCount];
 		int[][]	mans		= new int[caseCount][inputValue];
-		//ºñ±³ÇÏ±â À§ÇÑ °Í 
-		System.out.println("¹ß»ı °¡´ÉÇÑ °æ¿ìÀÇ ¼ö: " + caseCount);
+		//ë¹„êµí•˜ê¸° ìœ„í•œ ê²ƒ 
+		System.out.println("ë°œìƒ ê°€ëŠ¥í•œ ê²½ìš°ì˜ ìˆ˜: " + caseCount);
 
 		for (int i = 0; i < caseCount; i++) {
-			//·£´ıÀ¸·Î ³Ö±â
+			//ëœë¤ìœ¼ë¡œ ë„£ê¸°
 			for (int j = 0; j < inputValue; j++) {
 				mans[i][j]		= (int)(Math.random() * inputValue) + 1;
 
-				//Áßº¹ Á¦°Å
+				//ì¤‘ë³µ ì œê±°
 				for (int z = 0; z < j; z++) {
 					if (z != j && mans[i][z] == mans[i][j]) {
 						j--;
@@ -33,9 +33,9 @@ public class Quiz_19 {
 				}
 			}
 
-			//Áßº¹ Á¦°Å 
+			//ì¤‘ë³µ ì œê±° 
 			for (int j = 0; j < i; j++) {
-				//ºñ±³ È½¼ö¸¦ À§ÇÑ ÀÓ½Ã º¯¼ö
+				//ë¹„êµ íšŸìˆ˜ë¥¼ ìœ„í•œ ì„ì‹œ ë³€ìˆ˜
 				int tmp = 0;
 				for (int z = 0; z < inputValue; z++) {
 					if (i != j && mans[i][z] == mans[j][z]) tmp++;
@@ -48,7 +48,7 @@ public class Quiz_19 {
 			}
 		}
 
-		//Á¤·Ä
+		//ì •ë ¬
 		for (int i = 0; i < caseCount; i++) {
 			String tmp = "";
 			for (int j = 0; j < inputValue; j++) {
@@ -59,9 +59,14 @@ public class Quiz_19 {
 		
 		Arrays.sort(resultMans);
 		
-		//Ãâ·Â
-		for (int i = 0; i < caseCount; i++) {
-			System.out.println(resultMans[i]);
+		//ì¶œë ¥
+		for (int i = 0; i < resultMans.length; i++) {
+			String tmp = "" + resultMans[i];
+			for (int j = 0; j < inputValue; j++) {
+				char temp = tmp.charAt(j);
+				System.out.print(temp + " ");
+			}
+			System.out.println();
 		}
 
 		scn.close();
