@@ -7,44 +7,50 @@ public class Quiz_16 {
 		Scanner scn = new Scanner(System.in);
 		
 		System.out.println("----------------------\n"
-						+" Çà·Ä »çÀÌÁî(N)¸¦ ÀÔ·ÂÇÏ¼¼¿ä\n"
+						+" í–‰ë ¬ ì‚¬ì´ì¦ˆ(N)ë¥¼ ì…ë ¥í•˜ì„¸ìš”\n"
 						+"----------------------\n");
 		int		arraySize			= scn.nextInt();
+		int		firstCount			= 0;
 		int[][] firstnumberArray	= new int[arraySize][arraySize];
+		int[]	firstSaveNumber		= new int[arraySize * arraySize];
+		int 	secondCount			= 0;	
 		int[][] secondnumberArray	= new int[arraySize][arraySize];
+		int[]	secondSaveNumber	= new int[arraySize * arraySize];
 		int[][] resultnumberArray	= new int[arraySize][arraySize];
-		//Ã¹¹øÂ° Çà·Ä ³­¼ö°ª ÁöÁ¤
+		//ì²«ë²ˆì§¸ í–‰ë ¬ ë‚œìˆ˜ê°’ ì§€ì •
 		for (int i = 0; i < firstnumberArray.length; i++) {
-			int tmp = 0;
 			for (int j = 0; j < firstnumberArray.length; j++) {
-				firstnumberArray[i][j] = (int)(Math.random() * 101);
-				//Áßº¹°ª Á¦°Å
-				for (int z = 0; z < firstnumberArray.length; z++) {
-					if (firstnumberArray[i][j] == firstnumberArray[tmp][z] && j != z) {
+				firstnumberArray[i][j]	= (int)(Math.random() * 101);
+				firstSaveNumber[firstCount]	= firstnumberArray[i][j];
+				//ì¤‘ë³µê°’ ì œê±°
+				for (int z = 0; z < firstCount; z++) {
+					if (firstnumberArray[i][j] == firstSaveNumber[z]) {
 						j--;
+						firstCount--;
 						break;
 					}
 				}
-				if (tmp < i)	tmp++;
+				firstCount++;
 			}
 		}
-		//µÎ¹øÂ° Çà·Ä ³­¼ö°ª ÁöÁ¤
+		//ë‘ë²ˆì§¸ í–‰ë ¬ ë‚œìˆ˜ê°’ ì§€ì •
 		for (int i = 0; i < secondnumberArray.length; i++) {
-			int tmp = 0;
 			for (int j = 0; j < secondnumberArray.length; j++) {
 				secondnumberArray[i][j] = (int)(Math.random() * 101);
-				//Áßº¹°ª Á¦°Å
-				for (int z = 0; z < secondnumberArray.length; z++) {
-					if (secondnumberArray[i][j] == secondnumberArray[tmp][z] && j != z) {
+				secondSaveNumber[secondCount] 	= secondnumberArray[i][j];
+				//ì¤‘ë³µê°’ ì œê±°
+				for (int z = 0; z < secondCount; z++) {
+					if (secondnumberArray[i][j] == secondSaveNumber[z]) {
 						j--;
+						secondCount--;
 						break;
 					}
 				}
-				if (tmp < i)	tmp++;
+				secondCount++;
 			}
 		}
 		
-		//µÎ Çà·ÄÀ» °ö¼À 
+		//ë‘ í–‰ë ¬ì„ ê³±ì…ˆ 
 		for (int i = 0; i < arraySize; i++) {
 			for (int j = 0; j < arraySize; j++) {
 				for (int z = 0; z < arraySize; z++) {
@@ -53,9 +59,9 @@ public class Quiz_16 {
 			}
 		}
 		
-		//Ãâ·Â
+		//ì¶œë ¥
 		System.out.println("----------------------");
-		//Ã¹¹øÂ° Çà·Ä Ãâ·Â
+		//ì²«ë²ˆì§¸ í–‰ë ¬ ì¶œë ¥
 		for (int i = 0; i < firstnumberArray.length; i++) {
 			for (int j = 0; j < firstnumberArray.length; j++) {
 				System.out.printf("%d\t", firstnumberArray[i][j]);
@@ -66,7 +72,7 @@ public class Quiz_16 {
 		System.out.println("\tX");
 		System.out.println("----------------------");
 		
-		//µÎ¹øÂ° Çà·Ä Ãâ·Â
+		//ë‘ë²ˆì§¸ í–‰ë ¬ ì¶œë ¥
 		for (int i = 0; i < secondnumberArray.length; i++) {
 			for (int j = 0; j < secondnumberArray.length; j++) {
 				System.out.printf("%d\t", secondnumberArray[i][j]);
@@ -77,7 +83,7 @@ public class Quiz_16 {
 		System.out.println("\t=");
 		System.out.println("----------------------");
 		
-		//°á°ú °ª Ãâ·Â
+		//ê²°ê³¼ ê°’ ì¶œë ¥
 		for (int i = 0; i < resultnumberArray.length; i++) {
 			for (int j = 0; j < resultnumberArray.length; j++) {
 				System.out.printf("%d\t", resultnumberArray[i][j]);
