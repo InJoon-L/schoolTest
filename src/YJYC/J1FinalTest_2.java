@@ -1,125 +1,176 @@
+package Quiz;
+import java.util.Scanner;
 
 public class J1FinalTest_2 {
+	static int count = 0;
 	public static void main(String[] args) {
-		char[][] apb = new char[8][8];	//·£´ýÀ¸·Î ³ÖÀ» ¹è¿­
-		char[] aid	= new char[26];		//¾ËÆÄºªÀÌ Â÷·Ê´ë·Î ³ª¿­µÇÀÖ´Â ¹è¿­
-		int[] count = new int[26];		//°¹¼ö¸¦ ¼¼±â À§ÇÑ ¹è¿­
-		char a = 'a';
-		//aid¹è¿­¿¡ ¾ËÆÄºªÀ» Â÷·Ê´ë·Î ´ëÀÔ
-		for (int i = 0; i < aid.length; i++) {
-			aid[i] = a;
-			a++;
-		}
-		//·£´ýÀ¸·Î apb¹è¿­¿¡ ¾ËÆÄºª ´ëÀÔ
-		for (int i = 0; i < apb.length; i++) {
-			for (int j = 0; j < apb.length; j++) {
-				apb[i][j] = (char)('a' + (int)(Math.random() * 26));
+		Scanner scn = new Scanner(System.in);
+		//ìœ„ì— ë©”ë‰´ì–¼
+		String[] a	   = {"ìž…ë ¥ìˆœë²ˆ", "í•™ë²ˆ", "êµ­ì–´", "ì˜ì–´", "ìˆ˜í•™", "ì´ì ", "í‰ê· ", "ìˆœìœ„"};
+		//ê²°ê³¼
+		int[][] result = new int[5][8];
+		//ì§€ì •í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
+		int set = 0;
+		//ì„±ì  ì‹œìž‘
+		do {
+			System.out.print("--------------------------\n"
+					+"1. ì„±ì  ìž…ë ¥\n"
+					+"2. ì „ì²´ ì„±ì  ì¶œë ¥ (í‰ê·  ê¸°ì¤€ ë‚´ë¦¼ì°¨ìˆœ)\n"
+					+"3. í•™ìƒ ì¡°íšŒ í›„ ì¶œë ¥\n"
+					+"4. ì¢…ë£Œ\n"
+					+"--------------------------\n"
+					+"ë©”ë‰´ ì„ íƒ : ");
+			set = scn.nextInt();
+			
+			switch (set) {
+			case 1:	//ì„±ì  ìž…ë ¥
+				input(result, a, scn);
+				break;
+			case 2:	//ì „ì²´ ì„±ì  ì¶œë ¥(í‰ê·  ê¸°ì¤€ ë‚´ë¦¼ì°¨ìˆœ)
+				output(result, a);
+				break;
+			case 3: //í•™ìƒ ì¡°íšŒ í›„ ì¶œë ¥
+				search(result, a, scn);
+				break;
+			case 4:
+				System.out.println("í”„ë¡œê·¸ëž¨ ì¢…ë£Œ");
+				break;
+			}
+		} while (set != 4);
+	}
+	//ì„±ì  ìž…ë ¥
+	static void input(int[][] arg1, String[] arg2, Scanner scn) {
+		int sum = 0; //í•©ê³„
+		int avg = 0; //í‰ê· 
+		
+		//ìž…ë ¥ ìˆœë²ˆ
+		arg1[count][0] = count + 1;
+		System.out.println("í•™ë²ˆì„ ìž…ë ¥ í•˜ì„¸ìš”:");
+		arg1[count][1] = scn.nextInt();
+		boolean flag = true; // ê°™ì€ í•™ë²ˆ ë¹„êµë¥¼ ìœ„í•œ ë³€ìˆ˜
+		//ê°™ì€ í•™ë²ˆì´ ìžˆëŠ”ì§€ í™•ì¸ 
+		while (flag) {
+			int icount = 0; // ê°™ì€ í•™ë²ˆ ë¹„êµë¥¼ ìœ„í•œ ë³€ìˆ˜
+			for (int i = 0; i < count; i++) {
+				//ê°™ì€ í•™ë²ˆì´ ì¡´ìž¬í•˜ë©´ forë¬¸ íƒˆì¶œ
+				if (arg1[i][1] == arg1[count][1]) {
+					System.out.println("ì¡´ìž¬í•˜ëŠ” í•™ë²ˆ ìž…ë‹ˆë‹¤. ë‹¤ì‹œ ìž…ë ¥í•´ì£¼ì„¸ìš”");
+					break;
+					//ì—†ë‹¤ë©´ ++
+				}else {
+					icount++;
+				}
+			}
+			//count ê°€ ê°™ë‹¤ë©´ ì¤‘ë³µì´ ì—†ê¸°ì— íƒˆì¶œ
+			if (icount == count) {
+				flag = false;
+			}else {	//ì•„ë‹ˆë©´ ì¤‘ë³µì´ìžˆê¸°ì— ë‹¤ì‹œ ìž…ë ¥
+				arg1[count][1] = scn.nextInt();
 			}
 		}
-		System.out.println("8 X 8, ¾ËÆÄºª ¹ß»ý °á°ú");
-		//±×¸®°í ¹Ù·Î Ãâ·Â
-		for (int i = 0; i < apb.length; i++) {
-			for (int j = 0; j < apb.length; j++) {
-				System.out.printf("\t%c", apb[i][j]);
+		System.out.println("êµ­ì–´ ì„±ì ì„ ìž…ë ¥ í•˜ì„¸ìš”");
+		arg1[count][2] = scn.nextInt();
+		System.out.println("ì˜ì–´ ì„±ì ì„ ìž…ë ¥ í•˜ì„¸ìš”");
+		arg1[count][3] = scn.nextInt();
+		System.out.println("ìˆ˜í•™ ì„±ì ì„ ìž…ë ¥ í•˜ì„¸ìš”");
+		arg1[count][4] = scn.nextInt();
+		//í•©ê³„ëž‘ í‰ê·  ê³„ì‚° 
+		for (int i = 2; i < 5; i++) {
+			sum += arg1[count][i];
+		}
+		avg = sum / 3;
+		arg1[count][5] = sum;
+		arg1[count][6] = avg;
+		//ìš”ë²ˆì— ìž…ë ¥í•œ ê°’ì„ ì¶œë ¥
+		System.out.println("ìž…ë ¥ ê°’ :");
+		for (int i = 1; i < 7; i++) {
+			System.out.printf("%s : %d ", arg2[i], arg1[count][i]);
+		}
+		System.out.println();
+		//ìˆœìœ„
+		for (int i = 0; i < count + 1; i++) {
+			int tmp = 1;
+			for (int j = 0; j < count + 1; j++) {
+				if (arg1[i][6] < arg1[j][6]) {
+					tmp++;
+				}
+			}
+			arg1[i][7] = tmp;
+		}
+		//í‰ê· ê¸°ì¤€ ë‚´ë¦¼ì°¨ìˆœ
+		if (count == 0) {
+			arg1[count][7] = 1;
+		}
+		for (int i = 0; i < count; i++) {
+			int index = i;
+			int tmp = 1; 
+			for (int j = i + 1; j < count + 1; j++) {
+				if (arg1[index][6] < arg1[j][6]) {
+					index = j;
+				}
+			}
+
+			for (int j = 0; j < arg2.length; j++) {
+				tmp = arg1[i][j];
+				arg1[i][j] = arg1[index][j];
+				arg1[index][j] = tmp;
+			}
+		}
+		count++;
+	}
+	//ì „ì²´ ì„±ì  ì¶œë ¥(í‰ê·  ê¸°ì¤€ ë‚´ë¦¼ì°¨ìˆœ)
+	static void output(int[][] arg1, String[] arg2) {
+		//ìž…ë ¥ ìˆœë²ˆì´  ì´ˆê¸°ê°’ 0 ì´ë¼ë©´ ìž…ë ¥ê°’ ì—†ë‹¤ëŠ” ë¬¸êµ¬ ì¶œë ¥ í›„ ë©”ë‰´ ì¶œë ¥
+		if (arg1[0][0] == 0) {
+			System.out.println("ìž…ë ¥ê°’ì´ ì—†ìŠµë‹ˆë‹¤.");
+			//ì•„ë‹ˆë©´ ì¶œë ¥
+		}else {
+			for (int i = 0; i < arg2.length; i++) {
+				System.out.printf("%s\t", arg2[i]);
 			}
 			System.out.println();
+			for (int i = 0; i < count; i++) {
+				for (int j = 0; j < arg2.length; j++) {
+					System.out.printf("%d\t", arg1[i][j]);
+				}
+				System.out.println();
+			}
 		}
-		//È½¼ö¼¼±â
-		for (int i = 0; i < apb.length; i++) {
-			for (int j = 0; j < apb.length; j++) {
-				for (int j2 = 0; j2 < aid.length; j2++) {
-					//°°´Ù¸é ¾ËÆÄºª ÀÚ¸®¿¡ ¸Â°Ô È½¼ö Áõ°¡
-					if (aid[j2] == apb[i][j]) {
-						count[j2]++;
+	}
+	//í•™ìƒ ì¡°íšŒ í›„ ì¶œë ¥
+	static void search(int[][] arg1, String[] arg2, Scanner scn) {
+		System.out.println("ê²€ìƒ‰ í•  í•™ìƒì˜ í•™ë²ˆì„ ìž…ë ¥ í•˜ì„¸ìš”");
+		boolean b = true;	//ì¡°íšŒ í•  ë•Œ ìžˆëŠ” ì§€ ì—†ëŠ” ì§€ íŒë³„í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
+		//ê¸°íšŒê°€ 3ë²ˆì´ë¯€ë¡œ 3ë²ˆ ë°˜ë³µ
+		for (int i = 0; i < 3; i++) {
+			int sagasu = scn.nextInt(); //ì¡°íšŒ í•  í•™ë²ˆ
+			for (int j = 0; j < count; j++) {
+				//ìžˆë‹¤ë©´ ì¶œë ¥
+				if (arg1[j][1] == sagasu) {
+					for (int j2 = 0; j2 < arg2.length; j2++) {
+						System.out.printf("%s\t", arg2[j2]);
 					}
-				}
-			}
-		}
-		//ÃÖ¼Ò°ª ÃÖ´ë°ª
-		int min = 0;
-		int max = 0;
-		int index = 0;
-		int index2 = 0;
-		for (int j = 1; j < count.length; j++) {
-			//ÃÖ´ñ°ªÀ» ±¸ÇÏ±â À§ÇØ ºñ±³´ë»óÀÌ ´õ Å©¸é ¹Ù²Ù±â
-			if (count[index] < count[j]) {
-				index = j;
-				max = count[index];
-				//ÃÖ¼Ú°ªÀ» ±¸ÇÏ±â À§ÇØ ºñ±³´ë»óÀÌ ´õ ÀÛÀ¸¸é ¹Ù²Ù±â
-			}else if (count[index2] > count[j]) {
-				index2 = j;
-				min = count[index2];
-			}
-		}
-
-		int minCount = 0;
-		int maxCount = 0;
-		//È½¼ö°ª °ãÄ¡´Â°Å Ã£±â
-		for (int i = 0; i < count.length; i++) {
-			//ÃÖ¼Ú°ªÀÌ¶ó¸é ÃÖ¼Ú°ª È½¼ö ++
-			if (count[i] == min) {
-				minCount++;
-			}
-			//ÃÖ´ñ°ªÀÌ¶ó¸é ÃÖ´ñ°ª È½¼ö++
-			if (count[i] == max) {
-				maxCount++;
-			}
-		}
-
-		//ÃÖ¼Ò ¹ß»ý ¾ËÆÄºª Ãâ·Â
-		System.out.print("ÃÖ¼Ò ¹ß»ý ¾ËÆÄºª\n"
-				+" - ¹ß»ý ºóµµ : " + min + "\n"
-				+" - Áßº¹ ¾ËÆÄºª °³¼ö : " + minCount + "\n"
-				+" - ¾ËÆÄºª : ");
-		boolean flag2 = true; // ,ÇÑ¹ø Ãâ·Â¾ÈÇÏ±â À§ÇÑ º¯¼ö
-		for (int i = 0; i < count.length; i++) {
-			if (count[i] == min) {
-				if (flag2) {
-					System.out.printf("%c", aid[i]);
-					flag2 = false;
-				}else {
-					System.out.printf(", %c", aid[i]);
-				}
-			}
-		}
-		System.out.println();
-		//ÃÖ´ë ¹ß»ý ¾ËÆÄºª Ãâ·Â
-		System.out.print("ÃÖ´ë ¹ß»ý ¾ËÆÄºª\n"
-				+" - ¹ß»ý ºóµµ : " + max + "\n"
-				+" - Áßº¹ ¾ËÆÄºª °³¼ö : " + maxCount + "\n"
-				+" - ¾ËÆÄºª : ");
-		boolean flag1 = true; // ,ÇÑ¹ø Ãâ·Â¾ÈÇÏ±â À§ÇÑ º¯¼ö
-		for (int i = 0; i < count.length; i++) {
-			if (count[i] == max) {
-				if (flag1) {
-					System.out.printf("%c", aid[i]);
-					flag1 = false;
-				}else {
-					System.out.printf(", %c", aid[i]);
-				}
-
-			}
-		}
-		System.out.println();
-		
-		//ÁÙ¹Ù²Þ À§ÇÑ º¯¼ö 
-		int number = 0;
-		//¿À¸§Â÷¼ø Á¤·Ä
-		for (int i = 0; i < count.length; i++) {
-			for (int j = 0; j < apb.length; j++) {
-				for (int j2 = 0; j2 < apb.length; j2++) {
-					//aid ¹è¿­Àº Â÷·Ê´ë·Î ¾ËÆÄºªÀÌ ³ª¿­µÇÀÖ±â ¶§¹®¿¡ aid¹è¿­À» ±âÁØÀ¸·Î apb¹è¿­¿¡¼­ 
-					//°°Àº°É ÇÏ³ªÇÏ³ª Ã£¾Æ³»¼­ Ãâ·Â ±×·¯¸é ÀÚµ¿À¸·Î ¿À¸§Â÷¼øÀÌ ¿Ï¼º
-					if (aid[i] == apb[j][j2]) {
-						System.out.printf("\t%c", apb[j][j2]);
-						number++;
-						//8¹ø Ãâ·Â ÈÄ ÁÙ ¹Ù²Þ
-						if (number % 8 == 0) {
-							System.out.println();
-						}
+					System.out.println();
+					for (int j2 = 0; j2 < arg2.length; j2++) {
+						System.out.printf("%d\t", arg1[j][j2]);
 					}
+					System.out.println();
+					b = false;
+				}
+			}
+			//ì°¾ì•˜ìœ¼ë©´ ì¡°íšŒ ì¢…ë£Œ
+			if (!b) break;
+			
+			//ì—†ë‹¤ë©´ ì¶œë ¥
+			if (b) {
+				if (i < 2) {
+					System.out.println("ìž…ë ¥í•˜ì‹  í•™ë²ˆì€ ì—†ëŠ” í•™ë²ˆìž…ë‹ˆë‹¤. ë‹¤ì‹œ ìž…ë ¥í•˜ì„¸ìš”.");
+				}else {
+					System.out.println("ìž…ë ¥í•˜ì‹  í•™ë²ˆì€ ì—†ëŠ” í•™ë²ˆìž…ë‹ˆë‹¤. íšŸìˆ˜ê°€ ì´ˆê³¼ë˜ì–´ ë©”ë‰´ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.");
 				}
 			}
 		}
 	}
 }
+
+
